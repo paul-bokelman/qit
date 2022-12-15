@@ -5,12 +5,15 @@ import "tailwindcss/tailwind.css";
 
 import { trpc } from "@/utils/trpc";
 
+import SEO from "@/components/SEO";
+
 const QueueIt: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
   return (
     <SessionProvider session={session}>
+      <SEO />
       <Component {...pageProps} />
     </SessionProvider>
   );
