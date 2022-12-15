@@ -1,10 +1,10 @@
 import type { NextPageWithConfig } from "@/types";
 import Link from "next/link";
+import { Form } from "@/components";
 
 const Home: NextPageWithConfig = () => {
   return (
     <>
-      <div>{/* <Nav /> */}</div>
       <main className="flex min-h-screen flex-col items-center justify-center">
         <div className="flex flex-col gap-6">
           <h2 className="text-4xl font-bold text-white">Join Room</h2>
@@ -20,22 +20,4 @@ const Home: NextPageWithConfig = () => {
   );
 };
 
-Home.layout = {
-  links: ["sign in", "join room", "my room"],
-};
-
 export default Home;
-
-const Form: React.FC = () => {
-  return (
-    <div className="flex flex-col gap-2 text-lg">
-      <input
-        placeholder="Room Code"
-        className="h-[58px] w-[260px] rounded-lg bg-QDark px-6 text-white/40 outline-none placeholder:text-white/40"
-      ></input>
-      <button className="flex h-[58px] items-center justify-center rounded-lg bg-QDark font-semibold text-white">
-        Join
-      </button>
-    </div>
-  );
-};

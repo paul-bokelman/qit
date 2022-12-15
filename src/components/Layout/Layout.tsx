@@ -1,7 +1,6 @@
-import Link from "next/link";
 import type { Children } from "@/types";
-
-type NavigationLinks = "sign in" | "my room" | "join room";
+import type { NavigationProps } from ".";
+import { Nav } from ".";
 
 export type LayoutWrapperProps =
   | ({
@@ -19,37 +18,15 @@ export const LayoutWrapper: React.FC<LayoutWrapperProps & Children> = (
   return <>{children}</>;
 };
 
-type LayoutProps = {
-  links?: Array<NavigationLinks>;
-};
+type LayoutProps = NavigationProps & {};
 
 export const Layout: React.FC<LayoutProps & Children> = ({
-  links: activeLinks = ["sign in"],
+  links,
   children,
 }) => {
-  const links = {
-    "sign in": "/auth/signin",
-    "my room": "/room",
-    "join room": "/room/join",
-  } as const;
-
-  const visibleLinks = Object.entries(links).filter(([link]) =>
-    activeLinks.includes(link as NavigationLinks)
-  );
-
   return (
-    <div>
-      <div>
-        {visibleLinks.map(([link, dest]) => (
-          <Link
-            key={link}
-            href={dest}
-            className="mr-2 capitalize text-blue-500 underline"
-          >
-            {link}
-          </Link>
-        ))}
-      </div>
+    <div className="bg-black">
+      <Nav links={links} />
       {children}
     </div>
   );
