@@ -1,13 +1,10 @@
-import { Nav } from "@/components/Nav";
-import { type NextPage } from "next";
+import type { NextPageWithConfig } from "@/types";
 import Link from "next/link";
 
-const Home: NextPage = () => {
+const Home: NextPageWithConfig = () => {
   return (
     <>
-      <div>
-        <Nav />
-      </div>
+      <div>{/* <Nav /> */}</div>
       <main className="flex min-h-screen flex-col items-center justify-center">
         <div className="flex flex-col gap-6">
           <h2 className="text-4xl font-bold text-white">Join Room</h2>
@@ -21,6 +18,10 @@ const Home: NextPage = () => {
       </main>
     </>
   );
+};
+
+Home.layout = {
+  links: ["sign in", "join room", "my room"],
 };
 
 export default Home;

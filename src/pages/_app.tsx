@@ -1,20 +1,22 @@
-import { type AppType } from "next/app";
-import { type Session } from "next-auth";
+import type { ExtendedAppProps } from "@/types";
 import { SessionProvider } from "next-auth/react";
 import "tailwindcss/tailwind.css";
 
 import { trpc } from "@/utils/trpc";
+import { SEO, LayoutWrapper } from "@/components";
 
-import SEO from "@/components/SEO";
-
-const QueueIt: AppType<{ session: Session | null }> = ({
+const QueueIt = ({
   Component,
   pageProps: { session, ...pageProps },
-}) => {
+}: ExtendedAppProps) => {
+  const { layout } = Component;
+
   return (
     <SessionProvider session={session}>
       <SEO />
-      <Component {...pageProps} />
+      <LayoutWrapper {...layout}>
+        <Component {...pageProps} />
+      </LayoutWrapper>
     </SessionProvider>
   );
 };
